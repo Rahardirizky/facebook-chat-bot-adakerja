@@ -6,6 +6,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => res.send("facebook jalan"))
+
 // Creates the endpoint for our webhook
 app.post("/webhook", (req, res) => {
   let body = req.body;
