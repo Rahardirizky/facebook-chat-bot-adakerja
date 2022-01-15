@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
     "dev": "NODE_ENV=development nodemon bin/www",
-    "start": "node app.js"
+    "start": "node bin/www"
   },
   "repository": {
     "type": "git",
