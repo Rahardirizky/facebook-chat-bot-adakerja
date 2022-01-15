@@ -1,6 +1,6 @@
 const app = require('../app')
 const http = require('http')
 const server = http.createServer(app)
-const PORT = 1337
+const PORT = process.env.PORT || 3000
 
 server.listen(PORT, () => console.log(`Webhook is listening at http://localhost:${PORT}`))
