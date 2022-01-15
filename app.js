@@ -2,6 +2,7 @@ require("dotenv").config()
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const postback = require("./bot/postBack")
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -20,6 +21,9 @@ app.post("/webhook", (req, res) => {
       // Gets the message. entry.messaging is an array, but
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
+      if(webhook_event.postback) {
+        postback(webhook_event)
+      }
       console.log(webhook_event);
     });
 
@@ -35,7 +39,7 @@ app.post("/webhook", (req, res) => {
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "qwertyuiokjhgfd"
+  let VERIFY_TOKEN = process.env.VERIFY_TOKEN
     
   // Parse the query params
   let mode = req.query['hub.mode'];
