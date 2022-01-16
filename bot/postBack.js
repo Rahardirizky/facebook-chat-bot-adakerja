@@ -27,6 +27,7 @@ module.exports = function processPostback(event) {
           .then(() => {
             const newUser = {
               user: senderID,
+              name: "",
               messages: [],
             };
             data.push(newUser);

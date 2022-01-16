@@ -1,6 +1,7 @@
 const { readFile, writeFile } = require("../utils/db");
 const sendMessage = require("./sendMessage");
 const senderAction = require("./senderAction");
+const { getDistance } = require("../utils/date");
 
 module.exports = function processMessage(event) {
   const senderID = event.sender.id;
@@ -24,7 +25,9 @@ module.exports = function processMessage(event) {
         const confirm = ["yes", "yeah", "yup", "no", "nah"]
         const i = confirm.findIndex((el) => el === senderMessage)
         if (i < 3 && i >= 0) {
-          sendMessage(senderID, { text: "There are <N> days left until your next birthday"})
+          const dayLeft = getDistance(data[index].birthday)
+
+          sendMessage(senderID, { text: `There are ${dayLeft} days left until your next birthday`})
         } else {
           sendMessage(senderID, { text: "Goodbye"})
         }

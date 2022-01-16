@@ -1,5 +1,3 @@
-const { readFile } = require("./utils/db");
-
 const getDistance = (date) => {
   const [,month,day] = date.split("-")
   const today = new Date();
@@ -12,4 +10,6 @@ const getDistance = (date) => {
   return Math.floor((birthday.getTime() - today.getTime()) / (1000*3600*24))
 };
 
-getDistance("2000-01-18");
+module.exports = {
+  getDistance
+}
