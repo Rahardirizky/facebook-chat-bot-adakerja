@@ -10,10 +10,11 @@ module.exports = function processPostback(event) {
   if (payload === "Hi") {
     console.log({ db });
     readFile((error, data) => {
-      const index = data.find((el) => el.user === senderID);
+      const index = data.findIndex((el) => el.user === senderID);
 
+      console.log({data, index}, ">>>>postback");
       senderAction(senderID);
-      if (index) {
+      if (index >= 0) {
         sendMessage(senderID, { text: "Hi there!" });
         if (!data[index].name) {
           sendMessage(senderID, { text: "What is your first name?" });

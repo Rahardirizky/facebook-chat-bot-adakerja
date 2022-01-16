@@ -7,9 +7,9 @@ module.exports = function processMessage(event) {
   const senderMessage = event.message.text
 
   readFile((error, data) => {
-    const index = data.find((el) => el.user === senderID);
+    const index = data.findIndex((el) => el.user === senderID);
     
-    console.log({data, index});
+    console.log({data, index}, ">>messages");
     senderAction(senderID);
     switch (data[index].messages.length) {
       case 0:
