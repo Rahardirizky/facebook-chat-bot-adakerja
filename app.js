@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const postback = require("./bot/postBack")
+const processMessage = require("./bot/processMessage")
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -23,6 +24,8 @@ app.post("/webhook", (req, res) => {
       let webhook_event = entry.messaging[0];
       if(webhook_event.postback) {
         postback(webhook_event)
+      } else if (webhook_event.message) {
+        processMessage(webhook_event)
       }
       console.log(webhook_event);
     });
