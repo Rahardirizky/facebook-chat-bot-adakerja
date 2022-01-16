@@ -9,6 +9,7 @@ module.exports = function processMessage(event) {
   readFile((error, data) => {
     const index = data.find((el) => el.user === senderID);
     
+    console.log({data, index});
     senderAction(senderID);
     switch (data[index].messages.length) {
       case 0:
