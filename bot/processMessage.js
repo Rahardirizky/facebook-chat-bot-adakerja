@@ -23,7 +23,7 @@ module.exports = function processMessage(event) {
       default:
         const confirm = ["yes", "yeah", "yup", "no", "nah"]
         const i = confirm.findIndex((el) => el === senderMessage)
-        if (i < 3) {
+        if (i < 3 && i >= 0) {
           sendMessage(senderID, { text: "There are <N> days left until your next birthday"})
         } else {
           sendMessage(senderID, { text: "Goodbye"})
