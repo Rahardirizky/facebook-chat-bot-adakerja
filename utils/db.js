@@ -11,6 +11,7 @@ const writeFile = (data) => {
 
 const readFile = (cb) => {
   fs.readFile("../db/db.json", "utf-8", (error, data) => {
+    console.log({data});
     if (error) {
       cb(error)
     } else {
